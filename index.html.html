@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mega Jantar FADEUP 2026</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --navy: #0d1b2a;
+      --gold: #c9a84c;
+      --gold-light: #e8c97a;
+      --cream: #f5f0e8;
+      --white: #ffffff;
+      --gray: #6b7280;
+      --light: #f9f7f4;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--light);
+      color: var(--navy);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.2rem 5vw;
+      background: rgba(13,27,42,0.95);
+      backdrop-filter: blur(8px);
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem; color: var(--gold); letter-spacing: .05em;
+    }
+    .nav-links { display: flex; gap: 2rem; }
+    .nav-links a {
+      color: rgba(255,255,255,.7); text-decoration: none;
+      font-size: .85rem; letter-spacing: .08em; text-transform: uppercase;
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-cta {
+      background: var(--gold); color: var(--navy) !important;
+      padding: .45rem 1.2rem; border-radius: 2px; font-weight: 500 !important;
+    }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      background: var(--navy);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center; padding: 8rem 5vw 5rem;
+      position: relative; overflow: hidden;
+    }
+    .hero-bg-lines {
+      position: absolute; inset: 0; pointer-events: none;
+      background-image:
+        linear-gradient(rgba(201,168,76,.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(201,168,76,.06) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+    .hero-tag {
+      display: inline-block;
+      border: 1px solid var(--gold); color: var(--gold);
+      font-size: .75rem; letter-spacing: .2em; text-transform: uppercase;
+      padding: .35rem 1rem; margin-bottom: 2rem;
+      animation: fadeUp .8s ease both;
+    }
+    #hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3rem, 8vw, 6.5rem);
+      line-height: 1.05; color: var(--white);
+      animation: fadeUp .8s .15s ease both;
+    }
+    #hero h1 span { color: var(--gold); display: block; }
+    .hero-sub {
+      margin-top: 1.5rem;
+      font-size: clamp(.95rem, 2vw, 1.15rem);
+      color: rgba(255,255,255,.6); max-width: 500px;
+      animation: fadeUp .8s .3s ease both;
+    }
+    .hero-meta {
+      display: flex; gap: 2.5rem; margin-top: 3rem; flex-wrap: wrap; justify-content: center;
+      animation: fadeUp .8s .45s ease both;
+    }
+    .hero-meta-item { text-align: center; }
+    .hero-meta-item .label {
+      font-size: .7rem; letter-spacing: .15em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: .3rem;
+    }
+    .hero-meta-item .value {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem; color: var(--white);
+    }
+    .hero-divider { width: 1px; background: rgba(255,255,255,.15); height: 50px; align-self: center; }
+    .hero-scroll {
+      position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: .5rem;
+      color: rgba(255,255,255,.4); font-size: .7rem; letter-spacing: .1em; text-transform: uppercase;
+      animation: fadeUp .8s .6s ease both;
+    }
+    .scroll-line {
+      width: 1px; height: 40px; background: linear-gradient(var(--gold), transparent);
+      animation: scrollPulse 1.5s ease-in-out infinite;
+    }
+
+    /* ── SECTION BASE ── */
+    section { padding: 6rem 5vw; }
+    .section-label {
+      font-size: .7rem; letter-spacing: .2em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: .75rem;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 2.8rem); line-height: 1.2;
+    }
+    .section-desc {
+      margin-top: .75rem; color: var(--gray);
+      font-size: 1rem; max-width: 520px; line-height: 1.7;
+    }
+    .section-header { margin-bottom: 3.5rem; }
+
+    /* ── RESPONSÁVEIS ── */
+    #responsaveis { background: var(--white); }
+    .resp-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1.5rem;
+    }
+    .resp-card {
+      border: 1px solid #e5e0d8; padding: 1.5rem;
+      transition: border-color .2s, transform .2s;
+    }
+    .resp-card:hover { border-color: var(--gold); transform: translateY(-3px); }
+    .resp-year {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem; color: var(--gold); margin-bottom: .3rem;
+    }
+    .resp-name { font-weight: 500; font-size: .95rem; margin-bottom: .15rem; }
+    .resp-role { font-size: .8rem; color: var(--gray); }
+
+    /* ── LOCAL ── */
+    #local { background: var(--navy); color: var(--white); }
+    #local .section-label { color: var(--gold); }
+    #local .section-title { color: var(--white); }
+    #local .section-desc { color: rgba(255,255,255,.6); }
+    .local-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+    }
+    .local-map {
+      aspect-ratio: 4/3;
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(201,168,76,.2);
+      display: flex; align-items: center; justify-content: center;
+      color: rgba(255,255,255,.3); font-size: .85rem;
+      letter-spacing: .1em; text-transform: uppercase;
+      position: relative; overflow: hidden;
+    }
+    .local-map iframe {
+      width: 100%; height: 100%; border: none; filter: invert(90%) hue-rotate(180deg);
+      opacity: .8;
+    }
+    .local-details { display: flex; flex-direction: column; gap: 1.5rem; }
+    .local-detail-item { display: flex; gap: 1rem; align-items: flex-start; }
+    .local-icon {
+      width: 36px; height: 36px; border: 1px solid rgba(201,168,76,.3);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; flex-shrink: 0; margin-top: .1rem;
+    }
+    .local-detail-label {
+      font-size: .7rem; letter-spacing: .15em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: .2rem;
+    }
+    .local-detail-value { font-size: .95rem; color: rgba(255,255,255,.85); }
+
+    /* ── GALERIA ── */
+    #galeria { background: var(--light); }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: repeat(2, 220px);
+      gap: 1rem;
+    }
+    .gallery-item {
+      background: #ddd; overflow: hidden;
+      position: relative; cursor: pointer;
+    }
+    .gallery-item:first-child { grid-column: span 2; grid-row: span 2; }
+    .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s; }
+    .gallery-item:hover img { transform: scale(1.05); }
+    .gallery-placeholder {
+      width: 100%; height: 100%;
+      background: linear-gradient(135deg, #d0ccc4, #b8b4ac);
+      display: flex; align-items: center; justify-content: center;
+      font-size: .75rem; color: rgba(0,0,0,.4); letter-spacing: .1em; text-transform: uppercase;
+    }
+    .gallery-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(transparent, rgba(13,27,42,.6));
+      opacity: 0; transition: opacity .3s;
+      display: flex; align-items: flex-end; padding: 1rem;
+    }
+    .gallery-item:hover .gallery-overlay { opacity: 1; }
+    .gallery-caption { color: var(--white); font-size: .8rem; }
+
+    /* ── BILHETES ── */
+    #bilhetes { background: var(--cream); }
+    .tickets-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start;
+    }
+    .ticket-info h3 {
+      font-family: 'Playfair Display', serif; font-size: 1.6rem; margin-bottom: 1rem;
+    }
+    .ticket-price-box {
+      border-left: 3px solid var(--gold);
+      padding: 1.2rem 1.5rem; background: var(--white); margin-bottom: 1.5rem;
+    }
+    .ticket-price-label { font-size: .7rem; letter-spacing: .15em; text-transform: uppercase; color: var(--gray); }
+    .ticket-price { font-family: 'Playfair Display', serif; font-size: 2.5rem; color: var(--navy); }
+    .ticket-includes { list-style: none; display: flex; flex-direction: column; gap: .6rem; }
+    .ticket-includes li {
+      display: flex; align-items: center; gap: .6rem;
+      font-size: .9rem; color: var(--gray);
+    }
+    .ticket-includes li::before {
+      content: '✓'; color: var(--gold); font-weight: 700; flex-shrink: 0;
+    }
+
+    /* FORM */
+    .ticket-form { background: var(--white); padding: 2.5rem; border: 1px solid #e5e0d8; }
+    .ticket-form h3 {
+      font-family: 'Playfair Display', serif; font-size: 1.4rem; margin-bottom: 1.5rem;
+    }
+    .form-group { margin-bottom: 1.2rem; }
+    .form-group label {
+      display: block; font-size: .75rem; letter-spacing: .1em; text-transform: uppercase;
+      color: var(--gray); margin-bottom: .4rem;
+    }
+    .form-group input,
+    .form-group select {
+      width: 100%; padding: .8rem 1rem;
+      border: 1px solid #e5e0d8; background: var(--light);
+      font-family: 'DM Sans', sans-serif; font-size: .9rem; color: var(--navy);
+      outline: none; transition: border-color .2s;
+      appearance: none;
+    }
+    .form-group input:focus,
+    .form-group select:focus { border-color: var(--gold); }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .btn-submit {
+      width: 100%; padding: 1rem;
+      background: var(--gold); color: var(--navy);
+      border: none; font-family: 'DM Sans', sans-serif;
+      font-size: .9rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase;
+      cursor: pointer; transition: background .2s, transform .1s;
+      margin-top: .5rem;
+    }
+    .btn-submit:hover { background: var(--gold-light); }
+    .btn-submit:active { transform: scale(.99); }
+    .form-note {
+      font-size: .75rem; color: var(--gray); margin-top: .8rem; text-align: center; line-height: 1.5;
+    }
+    .form-success {
+      display: none; text-align: center; padding: 2rem;
+    }
+    .form-success .check { font-size: 2.5rem; margin-bottom: 1rem; }
+    .form-success h4 { font-family: 'Playfair Display', serif; font-size: 1.3rem; margin-bottom: .5rem; }
+    .form-success p { color: var(--gray); font-size: .9rem; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--navy); color: rgba(255,255,255,.5);
+      padding: 2.5rem 5vw; text-align: center; font-size: .8rem;
+    }
+    footer span { color: var(--gold); }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: .3; }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .local-grid { grid-template-columns: 1fr; }
+      .tickets-grid { grid-template-columns: 1fr; }
+      .gallery-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto;
+      }
+      .gallery-item:first-child { grid-column: span 2; grid-row: span 1; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">FADEUP · Mega Jantar</div>
+  <div class="nav-links">
+    <a href="#responsaveis">Responsáveis</a>
+    <a href="#local">Local</a>
+    <a href="#galeria">Galeria</a>
+    <a href="#bilhetes" class="nav-cta">Comprar Bilhete</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg-lines"></div>
+  <div class="hero-tag">Faculdade de Desporto · Universidade do Porto</div>
+  <h1>
+    Mega Jantar
+    <span>FADEUP</span>
+  </h1>
+  <p class="hero-sub">Uma noite para reunir gerações. Celebra a tua faculdade com quem partilhou os mesmos corredores.</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <div class="label">Data</div>
+      <div class="value">2 de Maio</div>
+    </div>
+    <div class="hero-divider"></div>
+    <div class="hero-meta-item">
+      <div class="label">Local</div>
+      <div class="value">FADEUP</div>
+    </div>
+    <div class="hero-divider"></div>
+    <div class="hero-meta-item">
+      <div class="label">Check-in</div>
+      <div class="value">19h30</div>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    Scroll
+  </div>
+</section>
+
+<!-- RESPONSÁVEIS -->
+<section id="responsaveis">
+  <div class="section-header">
+    <div class="section-label">Organização</div>
+    <h2 class="section-title">Responsáveis por Ano</h2>
+    <p class="section-desc">Cada geração tem o seu representante. Conhece quem está por detrás desta noite.</p>
+  </div>
+  <div class="resp-grid">
+    <div class="resp-card">
+      <div class="resp-year">95 – 00</div>
+      <div class="resp-name">Nome do Responsável</div>
+      <div class="resp-role">Licenciatura · FADEUP</div>
+    </div>
+    <div class="resp-card">
+      <div class="resp-year">96 – 01</div>
+      <div class="resp-name">Nome do Responsável</div>
+      <div class="resp-role">Licenciatura · FADEUP</div>
+    </div>
+    <div class="resp-card">
+      <div class="resp-year">02 – 07</div>
+      <div class="resp-name">Nome do Responsável</div>
+      <div class="resp-role">Licenciatura · FADEUP</div>
+    </div>
+    <div class="resp-card">
+      <div class="resp-year">08 – 13</div>
+      <div class="resp-name">Nome do Responsável</div>
+      <div class="resp-role">Licenciatura · FADEUP</div>
+    </div>
+    <div class="resp-card">
+      <div class="resp-year">14 – 19</div>
+      <div class="resp-name">Nome do Responsável</div>
+      <div class="resp-role">Licenciatura · FADEUP</div>
+    </div>
+    <div class="resp-card">
+      <div class="resp-year">20 – 26</div>
+      <div class="resp-name">Nome do Responsável</div>
+      <div class="resp-role">Licenciatura · FADEUP</div>
+    </div>
+  </div>
+</section>
+
+<!-- LOCAL -->
+<section id="local">
+  <div class="local-grid">
+    <div class="local-details">
+      <div>
+        <div class="section-label">Onde nos encontramos</div>
+        <h2 class="section-title">O Local</h2>
+        <p class="section-desc">O jantar realiza-se nas instalações da Faculdade de Desporto da Universidade do Porto, no coração do Campus Universitário de Paranhos.</p>
+      </div>
+      <div class="local-detail-item">
+        <div class="local-icon">📍</div>
+        <div>
+          <div class="local-detail-label">Morada</div>
+          <div class="local-detail-value">Rua Dr. Plácido Costa, 91<br>4200-450 Porto</div>
+        </div>
+      </div>
+      <div class="local-detail-item">
+        <div class="local-icon">📅</div>
+        <div>
+          <div class="local-detail-label">Data & Hora</div>
+          <div class="local-detail-value">2 de Maio de 2026<br>Check-in às 19h30</div>
+        </div>
+      </div>
+      <div class="local-detail-item">
+        <div class="local-icon">🍽️</div>
+        <div>
+          <div class="local-detail-label">Programa</div>
+          <div class="local-detail-value">Check-in 19h30 – 20h30<br>Jantar a partir das 20h30<br>After a confirmar</div>
+        </div>
+      </div>
+    </div>
+    <div class="local-map">
+      <iframe
+        src="https://maps.google.com/maps?q=Faculdade+de+Desporto+Universidade+do+Porto&output=embed"
+        allowfullscreen
+        loading="lazy">
+      </iframe>
+    </div>
+  </div>
+</section>
+
+<!-- GALERIA -->
+<section id="galeria">
+  <div class="section-header">
+    <div class="section-label">Memórias</div>
+    <h2 class="section-title">Galeria</h2>
+    <p class="section-desc">As melhores memórias dos jantares anteriores. Adiciona as tuas fotos aqui.</p>
+  </div>
+  <div class="gallery-grid">
+    <div class="gallery-item">
+      <div class="gallery-placeholder">Foto Principal</div>
+      <div class="gallery-overlay"><span class="gallery-caption">Jantar FADEUP · 2024</span></div>
+    </div>
+    <div class="gallery-item">
+      <div class="gallery-placeholder">Foto 2</div>
+      <div class="gallery-overlay"><span class="gallery-caption">Convívio</span></div>
+    </div>
+    <div class="gallery-item">
+      <div class="gallery-placeholder">Foto 3</div>
+      <div class="gallery-overlay"><span class="gallery-caption">FADEUP</span></div>
+    </div>
+    <div class="gallery-item">
+      <div class="gallery-placeholder">Foto 4</div>
+      <div class="gallery-overlay"><span class="gallery-caption">Alumni</span></div>
+    </div>
+    <div class="gallery-item">
+      <div class="gallery-placeholder">Foto 5</div>
+      <div class="gallery-overlay"><span class="gallery-caption">Galeria</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- BILHETES -->
+<section id="bilhetes">
+  <div class="section-header">
+    <div class="section-label">Reserva o teu lugar</div>
+    <h2 class="section-title">Comprar Bilhete</h2>
+    <p class="section-desc">Lugares limitados. Garante já a tua presença nesta noite inesquecível.</p>
+  </div>
+  <div class="tickets-grid">
+    <div class="ticket-info">
+      <h3>O que está incluído</h3>
+      <div class="ticket-price-box">
+        <div class="ticket-price-label">Preço por pessoa</div>
+        <div class="ticket-price">XX €</div>
+      </div>
+      <ul class="ticket-includes">
+        <li>Jantar completo (entrada, prato e sobremesa)</li>
+        <li>Bebidas incluídas durante o jantar</li>
+        <li>Acesso à galeria e espaços FADEUP</li>
+        <li>Programa cultural e after (a confirmar)</li>
+        <li>Convívio com ex-alunos e staff</li>
+      </ul>
+      <p style="margin-top:1.5rem; font-size:.85rem; color:var(--gray); line-height:1.6;">
+        O pagamento será efectuado por transferência bancária após submissão do formulário.
+        Os dados de pagamento serão enviados por email ou contacto directo.
+      </p>
+    </div>
+
+    <!-- FORM -->
+    <div class="ticket-form" id="ticketFormWrapper">
+      <h3>Dados de Inscrição</h3>
+      <form id="ticketForm" onsubmit="handleSubmit(event)">
+        <div class="form-group">
+          <label>Nome completo</label>
+          <input type="text" id="nome" placeholder="O teu nome" required />
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Localização</label>
+            <input type="text" id="localizacao" placeholder="Cidade" required />
+          </div>
+          <div class="form-group">
+            <label>Ano de Estudos</label>
+            <select id="ano" required>
+              <option value="" disabled selected>Seleciona</option>
+              <option value="95-00">1995 – 2000</option>
+              <option value="96-01">1996 – 2001</option>
+              <option value="02-07">2002 – 2007</option>
+              <option value="08-13">2008 – 2013</option>
+              <option value="14-19">2014 – 2019</option>
+              <option value="20-26">2020 – 2026</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Email de contacto</label>
+          <input type="email" id="email" placeholder="email@exemplo.com" required />
+        </div>
+        <button type="submit" class="btn-submit">Garantir o meu lugar →</button>
+        <p class="form-note">
+          Após submissão recebes instruções de pagamento.<br>
+          A inscrição só é confirmada após pagamento.
+        </p>
+      </form>
+
+      <div class="form-success" id="formSuccess">
+        <div class="check">✅</div>
+        <h4>Inscrição recebida!</h4>
+        <p>Em breve recebes as instruções de pagamento.<br>Até 2 de Maio! 🎉</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 <span>Mega Jantar FADEUP</span> · Faculdade de Desporto da Universidade do Porto</p>
+  <p style="margin-top:.5rem;">Desenvolvido com ❤️ pela comissão organizadora</p>
+</footer>
+
+<script>
+  // ── FORM SUBMIT ──
+  async function handleSubmit(e) {
+    e.preventDefault();
+
+    const nome = document.getElementById('nome').value;
+    const localizacao = document.getElementById('localizacao').value;
+    const ano = document.getElementById('ano').value;
+    const email = document.getElementById('email').value;
+
+    // ── Google Sheets via Apps Script ──
+    // Substitui SCRIPT_URL pelo URL do teu Google Apps Script web app
+    const SCRIPT_URL = 'SUBSTITUI_PELO_URL_DO_TEU_APPS_SCRIPT';
+
+    const btn = document.querySelector('.btn-submit');
+    btn.textContent = 'A registar...';
+    btn.disabled = true;
+
+    try {
+      if (SCRIPT_URL !== 'SUBSTITUI_PELO_URL_DO_TEU_APPS_SCRIPT') {
+        await fetch(SCRIPT_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ nome, localizacao, ano, email, data: new Date().toLocaleString('pt-PT') })
+        });
+      }
+      // Mostrar sucesso
+      document.getElementById('ticketForm').style.display = 'none';
+      document.getElementById('formSuccess').style.display = 'block';
+    } catch (err) {
+      btn.textContent = 'Erro — tenta novamente';
+      btn.disabled = false;
+    }
+  }
+
+  // ── SCROLL ANIMATIONS ──
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.resp-card, .gallery-item, .local-detail-item').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity .5s ease, transform .5s ease';
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>
